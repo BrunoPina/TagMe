@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <b:NavbarText pull="RIGHT" marginBottom="0" marginTop="0">
+    
+    	<b:Image type="CIRCLE" ui:field="userImage" addStyleNames="positioned-user-image"/>
+		
+    	<b:NavbarNav>
+	    	<b:ListDropDown>
+				<b:AnchorButton addStyleNames="xs-sm-user-name" dataToggle="DROPDOWN" ui:field="userName" ></b:AnchorButton>
+				<b:DropDownMenu addStyleNames="primary-tooltip-left">
+					<b:DropDownHeader ui:field="nomeParc" ></b:DropDownHeader>
+					<b:DropDownHeader ui:field="userEmail" ></b:DropDownHeader>
+					<b:AnchorListItem ui:field="btnAjustesConta" icon="COG">Ajustes da Conta</b:AnchorListItem>
+					<b:Divider />
+					<b:AnchorListItem ui:field="btnSair" icon="SIGN_OUT">Sair</b:AnchorListItem>
+					<g:FormPanel ui:field="logoutForm" action="" method="POST" />
+				</b:DropDownMenu>
+			</b:ListDropDown>
+		</b:NavbarNav>
+		
+	</b:NavbarText>
+
+</ui:UiBinder> 

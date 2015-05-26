@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:h="urn:import:org.gwtbootstrap3.client.ui.html">
+	
+	<h:Span addStyleNames="primary-tooltip">
+		<b:Tooltip ui:field="tooltip" title="Disponível em breve">
+			<b:ThumbnailPanel addStyleNames="center-block iconed-thumbnail">
+				<h:Span addStyleNames="thumbnail-icon center-block">	
+					<b:Icon type="USD" ui:field="icon" size="TIMES2"/>
+				</h:Span>
+				<b:Caption>
+					<b:Heading ui:field="heading" size="H4"/>
+					<h:Paragraph ui:field="paragraph"/>
+				</b:Caption>
+			</b:ThumbnailPanel>
+		</b:Tooltip>
+	</h:Span>
+	
+</ui:UiBinder> 

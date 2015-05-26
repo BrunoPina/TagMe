@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Tagme-Core-GWT" default="all" basedir=".">
+	
+	<path id="project.class.path">
+		<pathelement location="src" />
+		<pathelement location="bin" />
+		<fileset dir="${gwtsdk270}" includes="gwt-*.jar" />
+		<fileset dir="${gwtsdk270}" includes="validation-*.jar" />
+		<fileset dir="${api_sankhya}" includes="sankhya-gwt.jar" />
+		<fileset dir="${sankhyaplace_modules_tagme}" includes="*-gwt.jar" />
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-extras-0.9.1.jar" />
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-0.9.1.jar" />
+		
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="RetinaImages.jar" />
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="lib-gwt-file-0.3.5.jar" />
+	</path>
+	
+	<target name="all" depends="javac,gwtc,copygwt">
+	</target>
+	
+	<target name="javac" description="Compilar java do GWT para .class - necessario para compilar GWT">
+		<echo>Limpando .class</echo>
+		<delete dir="bin" failonerror="false" />
+		<mkdir dir="bin"/>
+		
+		<echo>Compilando Java</echo>
+		<javac srcdir="src" destdir="bin" includeantruntime="false" compiler="modern" encoding="UTF-8">
+			<classpath refid="project.class.path" />
+		</javac>
+	</target>
+	
+	<target name="gwtc" description="Compilar GWT para Javascript">
+		<echo>Removendo cache de compilacoes anteriores</echo>
+		<delete dir="gwt-unitCache" failonerror="false" />
+		<delete dir="war/gwtTagme" failonerror="false" />
+		
+		<echo>Compilando GWT</echo>
+		<java failonerror="true" fork="true" classname="br.com.sankhyagwt.dev.SnkGWTCompiler">
+			<classpath>
+				<pathelement location="src" />
+				<path refid="project.class.path" />
+			</classpath>
+			<jvmarg value="-Xmx1024M" />
+			<arg value="-deploy" />
+			<arg value="others" />
+			<arg value="-extra" />
+			<arg value="others" />
+			<!-- Enable faster, but less-optimized, compilations -->
+			<arg value="-draftCompile" />
+			<!-- Sets the optimization level used by the compiler.  0=none 9=maximum. -->
+			<arg value="-optimize" />
+			<arg value="0" />
+			<arg value="-localWorkers" />
+			<arg value="4" />
+			<arg value="-logLevel" />
+			<arg value="INFO" />
+			<arg value="br.com.tagme.gwt.core.Core" />
+		</java>
+
+		<delete dir="others" failonerror="false" />
+		<delete dir="gwt-unitCache" failonerror="false" />
+	</target>
+	
+	<target name="copygwt" description="Faz deploy dos arquivos GWT">
+		<echo>Fazendo deploy de arquivos GWT</echo>
+		<copy verbose="true" todir="${tomcatappserv}/webapps/Tagme-Core">
+			<fileset dir="war">
+			   	<exclude name="META-INF/"/>
+			   	<exclude name="WEB-INF/"/>
+			   	<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+</project>

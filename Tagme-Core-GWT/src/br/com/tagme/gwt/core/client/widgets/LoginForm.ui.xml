@@ -1,0 +1,53 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	
+	<ui:with field="res" type="br.com.tagme.gwt.theme.tagme.client.CommonImagesFactory"/>
+	
+	<b:Panel addStyleNames="right-block xs-center-block login-panel" width="300px" marginBottom="0">
+		<b:PanelBody>
+		
+			<b:Image addStyleNames="center-block logo-loginform" resource="{res.create.logo}"></b:Image>
+			
+			<g:FormPanel ui:field="loginForm" action="" method="POST">
+				<b:FieldSet>
+				
+					<b:Legend addStyleNames="loginform-title"></b:Legend><!-- Fazer login com seu Usuário Sankhya -->
+					
+					<b:FormGroup>
+						<b:InputGroup>
+							<b:TextBox placeholder="E-mail" ui:field="username" name="j_username" b:id="username" />
+							<b:InputGroupAddon icon="USER"/>
+						</b:InputGroup>
+					</b:FormGroup>
+					
+					<b:FormGroup>
+						<b:InputGroup>
+							<b:Input placeholder="Senha" type="PASSWORD" ui:field="password" name="j_password"  b:id="password" />
+							<b:InputGroupAddon icon="LOCK"/>
+						</b:InputGroup>
+					</b:FormGroup>
+					
+					<b:FormGroup>
+						<b:CheckBox ui:field="remember_me" name="_spring_security_remember_me">Permanecer conectado</b:CheckBox>
+					</b:FormGroup>
+					
+					<b:SubmitButton ui:field="btnLogin" dataLoadingText="Carregando..." type="PRIMARY" block="true">Fazer Login</b:SubmitButton>
+					
+				</b:FieldSet>
+			</g:FormPanel>
+			
+		</b:PanelBody>
+		
+		<b:Modal ui:field="modalParceiros" title="E-mail cadastrado em mais de um parceiro">
+			<b:ModalBody ui:field="containerGridParceiros"/>
+			<b:ModalFooter>
+				<b:Button ui:field="botaoEscolherParceiro" type="SUCCESS">Selecionar</b:Button>
+				<b:Button type="DANGER" dataDismiss="MODAL">Fechar</b:Button>
+			</b:ModalFooter>
+		</b:Modal>
+		
+	</b:Panel>
+	
+</ui:UiBinder> 

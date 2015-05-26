@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+	<b:Row>
+		<b:Column size="XS_12" addStyleNames="busca-sem-resultados">
+ 			<b:Icon fixedWidth="true" size="TIMES5" type="CLOUD" addStyleNames="center-block"/>
+ 			<b:Icon ui:field="customIcon" fixedWidth="true" size="TIMES2" type="FILE_TEXT" addStyleNames="center-block"/>
+			<b:Lead ui:field="customLeadMessage" text="Encontre soluções em OS's já resolvidas!"/>
+		</b:Column>
+	</b:Row>
+	
+</ui:UiBinder> 

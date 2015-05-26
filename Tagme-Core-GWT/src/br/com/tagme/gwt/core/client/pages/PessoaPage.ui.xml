@@ -1,0 +1,260 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:h="urn:import:org.gwtbootstrap3.client.ui.html"
+	xmlns:typeahead="urn:import:org.gwtbootstrap3.extras.typeahead.client.ui"
+	xmlns:s="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+	xmlns:b2="urn:import:org.gwtbootstrap3.extras.datetimepicker.client.ui">
+	  
+	<ui:with field="res" type="br.com.tagme.gwt.theme.tagme.client.CommonImagesFactory"/>
+	
+	<b:Row>
+	
+		<b:Column size="XS_12">
+			<b:PageHeader addStyleNames="index-page-header" text="Informações Cadastrais" subText="Novo Registro" />	
+		</b:Column>
+		
+		<b:Column size="XS_12">
+			<g:FormPanel ui:field="formPanel" addStyleNames="form-horizontal" method="POST">
+				<b:FieldSet ui:field="fsFormPanel">
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Nome</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_6">
+							<b:TextBox ui:field="txbNome" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Data de Nascimento</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b2:DateTimePicker ui:field="nascimento"
+								minView="MONTH" format="dd/mm/yyyy" autoClose="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE"
+								ui:field="hbNascimento" />
+						</b:Column>
+					</b:FormGroup>
+					
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Sexo</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_6, SM_2">
+							<b:Radio name="sexo" formValue="M" text="Masculino" ui:field="radioSexoM" />
+						</b:Column>
+						<b:Column size="XS_6, SM_6">
+							<b:Radio name="sexo" formValue="F" text="Feminino" ui:field="radioSexoF" />
+						</b:Column>
+					</b:Row>
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Estado Civil</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<s:Select ui:field="selectCargos" title="Selecione uma Opção...">
+								<s:Option visible="false" />
+								<s:Option value="1" text="Solteiro(a)" />
+								<s:Option value="2" text="Casado(a)" />
+								<s:Option value="3" text="Viúvo(a)" />
+								<s:Option value="4" text="Separado(a) judicialmente" />
+								<s:Option value="5" text="Desquitado(a)" />
+								<s:Option value="6" text="Divorciado(a)" />
+								<s:Option value="7" text="Outros" />
+							</s:Select>
+						</b:Column>
+					</b:Row>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">RG</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b:TextBox ui:field="rg" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">CPF</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b:TextBox ui:field="cpf" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+					
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Pretenção Salarial:</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<s:Select ui:field="selectSalario" title="Escolha uma faixa...">
+								<s:Option visible="false" />
+							</s:Select>
+						</b:Column>
+					</b:Row>
+					
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Disponibilidade para viagem:</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<b:CheckBox ui:field="dispViagem"></b:CheckBox>
+						</b:Column>
+					</b:Row>
+
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Recebeu indicação?</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<b:CheckBox ui:field="indicacao" />
+						</b:Column>
+					</b:Row>
+					
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Tipo do Endereço</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<s:Select ui:field="tipoLogradouro" title="Escolha o Tipo...">
+								<s:Option visible="false" />
+								<s:Option value="RUA" text="Rua" />
+								<s:Option value="AVE" text="Avenida" />
+								<s:Option value="TRV" text="Travessa" />
+							</s:Select>
+						</b:Column>
+					</b:Row>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Endereço</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_6">
+							<b:TextBox ui:field="endereco" validateOnBlur="true"></b:TextBox>
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Número</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_1">
+							<b:TextBox ui:field="numero" validateOnBlur="true"></b:TextBox>
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Bairro:</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_6">
+							<b:TextBox ui:field="bairro" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">CEP:</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b:TextBox ui:field="cep" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Cidade</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_6">
+							<b:TextBox ui:field="cidade" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+					
+					<b:Row styleName="form-group">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Estado</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_8">
+							<s:Select liveSearch="true" visibleSize="5" ui:field="estado" title="Digite ou Escolha o Estado...">
+								<s:Option visible="false" />
+								<s:Option value="AC" text="Acre" />
+								<s:Option value="AL" text="Alagoas" />
+								<s:Option value="AM" text="Amazonas" />
+								<s:Option value="AP" text="Amapá" />
+								<s:Option value="BA" text="Bahia" />
+								<s:Option value="CE" text="Ceará" />
+								<s:Option value="DF" text="Distrito Federal" />
+								<s:Option value="ES" text="Espírito Santo" />
+								<s:Option value="GO" text="Goiás" />
+								<s:Option value="MA" text="Maranhão" />
+								<s:Option value="MG" text="Minas Gerais" />
+								<s:Option value="MS" text="Mato Grosso do Sul" />
+								<s:Option value="MT" text="Mato Grosso" />
+								<s:Option value="PA" text="Pará" />
+								<s:Option value="PB" text="Paraíba" />
+								<s:Option value="PE" text="Pernambuco" />
+								<s:Option value="PI" text="Piauí" />
+								<s:Option value="PR" text="Paraná" />
+								<s:Option value="RJ" text="Rio de Janeiro" />
+								<s:Option value="RN" text="Rio Grande do Norte" />
+								<s:Option value="RS" text="Rio Grande do Sul" />
+								<s:Option value="RO" text="Rondônia" />
+								<s:Option value="RR" text="Roraima" />
+								<s:Option value="SC" text="Santa Catarina" />
+								<s:Option value="SE" text="Sergipe" />
+								<s:Option value="SP" text="São Paulo" />
+								<s:Option value="TO" text="Tocantins" />
+							</s:Select>
+						</b:Column>
+					</b:Row>
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Telefone Residencial:</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b:TextBox ui:field="residencial" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Telefone Celular</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_2">
+							<b:TextBox ui:field="celular" validateOnBlur="true" />
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+
+					<b:FormGroup addStyleNames="form-group-valid">
+						<b:Column size="XS_12, SM_3">
+							<b:FormLabel addStyleNames="form-label">Email</b:FormLabel>
+						</b:Column>
+						<b:Column size="XS_12, SM_3">
+							<b:InputGroup addStyleNames="iconed-input-group">
+								<b:TextBox ui:field="email" validateOnBlur="true" />
+								<b:InputGroupAddon addStyleNames="iconed-input-group-icon" icon="ENVELOPE_O" iconMuted="true" />
+							</b:InputGroup>
+							<b:HelpBlock iconType="EXCLAMATION_TRIANGLE" />
+						</b:Column>
+					</b:FormGroup>
+				</b:FieldSet>
+            </g:FormPanel>
+		</b:Column>
+		
+	</b:Row>
+	
+</ui:UiBinder> 

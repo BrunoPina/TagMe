@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SankhyaPlace-Core-GWT-Dist" default="all" basedir=".">
+	
+	<property name="classesdestdir" value="bin"/>
+	<property name="gwtdestdir" value="gwt"/>
+	<property name="resourcesdir" value="gwt/resources"/>
+	
+	<path id="project.class.path">
+		<pathelement location="src" />
+		<pathelement location="${classesdestdir}" />
+		
+		<fileset dir="${api_sankhya}" includes="sankhya-gwt.jar" />
+		
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-0.8.jar" />
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-extras-0.8.jar" />
+		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="RetinaImages.jar" />
+		<fileset dir="${localtmpjenkins}" includes="*-gwt.jar" />
+		
+		<fileset dir="${gwtsdk261}" includes="gwt-*.jar" />
+		<fileset dir="${gwtsdk261}" includes="validation-*.jar" />
+	</path>
+	
+	<target name="all" depends="javac,gwtc">
+	</target>
+	
+	<target name="javac" description="Compilar java do GWT para .class - necessario para compilar GWT">
+		<echo>Limpando .class</echo>
+		<delete dir="${classesdestdir}" failonerror="false" />
+		<mkdir dir="${classesdestdir}"/>
+		
+		<echo>Compilando Java</echo>
+		<javac srcdir="src" destdir="${classesdestdir}" includeantruntime="false" compiler="modern" encoding="UTF-8">
+			<classpath refid="project.class.path" />
+		</javac>
+	</target>
+	
+	<target name="gwtc" description="Compilar GWT para Javascript">
+		<echo>Removendo cache de compilacoes anteriores</echo>
+		<delete dir="gwt-unitCache" failonerror="false" />
+		<delete dir="war/${gwtdestdir}" failonerror="false" />
+		<delete dir="${resourcesdir}" failonerror="false" />
+		
+		<echo>Compilando GWT</echo>
+		<java failonerror="true" fork="true" classname="br.com.sankhyagwt.dev.SnkGWTCompiler">
+			<classpath>
+				<pathelement location="src" />
+				<path refid="project.class.path" />
+			</classpath>
+			<jvmarg value="-Xmx1024M" />
+			<arg value="-war" />
+			<arg value="war" />
+			<arg value="-deploy" />
+			<arg value="others" />
+			<arg value="-extra" />
+			<arg value="others" />
+			<!-- Sets the optimization level used by the compiler.  0=none 9=maximum. -->
+			<arg value="-optimize" />
+			<arg value="9" />
+			<arg value="-localWorkers" />
+			<arg value="4" />
+			<arg value="-logLevel" />
+			<arg value="INFO" />
+			<arg value="-moduleSrc" />
+			<arg value="src" />
+		</java>
+
+		<delete dir="others" />
+		<delete dir="gwt-unitCache" failonerror="false" />
+		<delete dir="${classesdestdir}" failonerror="false" />
+	</target>
+	
+</project>

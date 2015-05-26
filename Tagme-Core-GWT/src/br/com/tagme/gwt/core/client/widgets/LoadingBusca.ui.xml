@@ -1,0 +1,11 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+	<b:Row ui:field="loadingContainer">
+		<b:Column size="XS_12" addStyleNames="loading-container center-text">
+			<b:Icon spin="true" size="TIMES5" type="REFRESH"/>
+			<b:Lead text="Carregando..."/>
+		</b:Column>
+	</b:Row>
+	
+</ui:UiBinder> 
