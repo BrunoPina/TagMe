@@ -1,0 +1,58 @@
+10
+
+dir
+503
+svn://192.168.0.207/u02/svnrepo/sankhyastore/sankhyaplace/trunk/SankhyaPlace-Auth/src/br/com/sankhya/place/auth
+svn://192.168.0.207/u02/svnrepo/sankhyastore
+
+
+
+2014-09-12T20:06:05.252356Z
+493
+gildo.neto
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+7fe25b4f-4e54-4fe1-b8a2-f2dc30bcd439
+
+authentication
+dir
+
+authorization
+dir
+
+dao
+dir
+
+db
+dir
+
+helper
+dir
+
+image
+dir
+
+model
+dir
+
+remember
+dir
+
+services
+dir
+
+servlet
+dir
+

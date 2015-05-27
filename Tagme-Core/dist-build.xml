@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SankhyaPlace-Core-Dist" default="all" basedir=".">
+	
+	<property name="classesdestdir" value="WebContent/WEB-INF/classes"/>
+	<property environment="env"/>
+	<property name="gwtexternaldir" value="${jobs_path}/${env.JOB_NAME}-GWT/workspace/${env.JOB_NAME}-GWT/war"/>
+	<property name="gwtdir" value="WebContent/gwt"/>
+	
+	<path id="project.class.path">
+	    <fileset dir="WebContent/WEB-INF/lib">
+	        <include name="*.jar"/>
+	    </fileset>
+	</path>
+	
+	<target name="all" depends="copymodules,javac,copygwt,war">
+	</target>
+	
+	<target name="javac" description="Compilar Java">
+		<echo>Limpando .class</echo>
+		<delete dir="${classesdestdir}" failonerror="false" />
+		<mkdir dir="${classesdestdir}"/>
+		
+		<echo>Compilando Java</echo>
+	    <javac srcdir="src" destdir="${classesdestdir}" includeantruntime="false" compiler="modern" encoding="ISO-8859-1" debug="true" debuglevel="lines,vars,source">
+	        <classpath refid="project.class.path"/>
+	    </javac>
+	</target>
+	
+	<target name="copymodules" description="Copiar outros modulos para lib">
+		<echo>Copiando arquivos GWT para war</echo>
+		<copy verbose="true" todir="WebContent/WEB-INF/lib">
+			<fileset dir="${tmpjenkins}">
+			   	<exclude name="*-gwt.jar"/>
+			   	<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="copygwt" description="Copiar compilacao GWT para war">
+		<echo>Copiando arquivos GWT para war</echo>
+		<copy verbose="true" todir="WebContent">
+			<fileset dir="${gwtexternaldir}">
+			   	<exclude name="META-INF/"/>
+			   	<exclude name="WEB-INF/"/>
+			   	<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="war" description="Gerar WAR">
+		<echo>Gerando WAR</echo>
+		<delete file="/Users/lucasbmenezes/Desktop/SankhyaPlace.war" failonerror="false" />
+		
+	    <war destfile="/Users/lucasbmenezes/Desktop/SankhyaPlace.war" webxml="WebContent/WEB-INF/web.xml">
+	        <fileset dir="WebContent"/>
+	        <lib dir="WebContent/WEB-INF/lib"/>
+	        <classes dir="${classesdestdir}"/>
+	    </war>
+		
+		<delete dir="build" failonerror="false" />
+		<delete dir="${gwtdir}" failonerror="false" />
+	</target>
+	
+</project>

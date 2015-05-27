@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="SankhyaPlace-Commons-Dist" default="geral" basedir=".">
+	
+	<property name="jar_name" value="sankhyaplace-commons.jar" />
+	<property name="classesdestdir" value="${basedir}/bin"/>
+	
+	<path id="project.class.path">
+	    <fileset dir="${sankhyaplace_api_outros}">
+	        <include name="**/*.jar"/>
+	    </fileset>
+	</path>
+	
+	<target name="geral" description="Gerar jar">
+		
+		<delete file="${tmpjenkins}/${jar_name}" failonerror="false" />
+		<echo>Limpando .class</echo>
+		<delete dir="${classesdestdir}" failonerror="false" />
+		
+		<mkdir dir="${classesdestdir}" />
+		
+		<echo>Compilando Java</echo>
+	    <javac srcdir="src" destdir="${classesdestdir}" includeantruntime="false" compiler="modern" encoding="ISO-8859-1" debug="true" debuglevel="lines,vars,source">
+	    	<classpath refid="project.class.path" />
+	    </javac>
+		
+		<jar jarfile="${tmpjenkins}/${jar_name}" basedir="${classesdestdir}">
+		</jar>
+		
+	</target>
+	
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Tagme-Auth" default="gerar_jar" basedir=".">
+		
+	<property name="jarFile" value="Tagme-auth.jar"/>
+	<property name="sharedLibCoreServ" location="${tomcatappserv}/webapps/Tagme-Core/WEB-INF/lib"/>
+		
+	<target name="gerar_jar" description="Gera arquivos JAR">
+	      <echo>Gerando ${jarFile}</echo>
+	      <ant dir="${basedir}" antfile="${basedir}/packaging-build.xml"></ant>
+	    
+	      <echo>Copiando jar para JavaLib e para lib compartilhada no serv. app</echo>
+	      <copy verbose="true" file="${basedir}/${jarFile}" todir="${Tagme_modules}" />
+		  <copy verbose="true" file="${basedir}/${jarFile}" todir="${sharedLibCoreServ}" />
+	        
+	      <echo>Deletando jar gerado</echo>
+	      <delete file="${basedir}/${jarFile}"></delete>
+	</target>
+	
+</project>

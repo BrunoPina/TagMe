@@ -1,0 +1,27 @@
+package br.com.tagme.auth.db;
+
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
+
+@Component("DataSourceAuth")
+public class DataSourceAuth extends DriverManagerDataSource {
+
+	private static final String driverClassName = "com.mysql.jdbc.Driver";
+	
+	
+	/*private static final String username = "root";
+	private static final String password = "root";
+	private static final String url = "jdbc:mysql://localhost:3306/tarefa";*/
+	
+	private static final String username = "snkstore";
+	private static final String password = "oivalf1234567";
+	private static final String url = "jdbc:mysql://sankhyastoredb.cekq3idr0yxc.sa-east-1.rds.amazonaws.com:3306/snkstoredb";
+
+	public DataSourceAuth() {
+		setDriverClassName(driverClassName);
+		setUsername(username);
+		setPassword(password);
+		setUrl(url);
+	}
+
+}
