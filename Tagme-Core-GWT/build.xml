@@ -7,12 +7,11 @@
 		<pathelement location="bin" />
 		<fileset dir="${gwtsdk270}" includes="gwt-*.jar" />
 		<fileset dir="${gwtsdk270}" includes="validation-*.jar" />
-		<fileset dir="${api_sankhya}" includes="sankhya-gwt.jar" />
 		<fileset dir="${tagme_modules}" includes="*-gwt.jar" />
-		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-extras-0.9.1.jar" />
-		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="gwtbootstrap3-0.9.1.jar" />
-		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="RetinaImages.jar" />
-		<fileset dir="${sankhyaplace_api_outros_gwt}" includes="lib-gwt-file-0.3.5.jar" />
+		<fileset dir="${tagme_api_outros_gwt}" includes="gwtbootstrap3-extras-0.9.1.jar" />
+		<fileset dir="${tagme_api_outros_gwt}" includes="gwtbootstrap3-0.9.1.jar" />
+		<fileset dir="${tagme_api_outros_gwt}" includes="RetinaImages.jar" />
+		<fileset dir="${tagme_api_outros_gwt}" includes="lib-gwt-file-0.3.5.jar" />
 	</path>
 	
 	<target name="all" depends="javac,gwtc,copygwt">
