@@ -7,7 +7,8 @@
 	<classpathentry kind="lib" path="/Tagme-API-Outros/gwt/gwtbootstrap3-0.9.1.jar"/>
 	<classpathentry kind="lib" path="/Tagme-API-Outros/gwt/gwtbootstrap3-extras-0.9.1.jar"/>
 	<classpathentry kind="lib" path="/Tagme-Modules/mvp-gwt.jar"/>
-	<classpathentry kind="lib" path="/Tagme-Modules/sankhyaplace-auth-gwt.jar"/>
+	<classpathentry kind="lib" path="/Tagme-Modules/sankhya-gwt.jar"/>
 	<classpathentry kind="lib" path="/Tagme-Modules/sankhyaplace-commons-gwt.jar"/>
+	<classpathentry kind="lib" path="/Tagme-Modules/sankhyaplace-auth-gwt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
