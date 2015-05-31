@@ -1,22 +1,11 @@
 package br.com.tagme.gwt.core.client.widgets;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import org.gwtbootstrap3.client.ui.Anchor;
 import org.gwtbootstrap3.client.ui.Lead;
-import org.gwtbootstrap3.client.ui.Popover;
-import org.gwtbootstrap3.client.ui.Row;
 import org.gwtbootstrap3.client.ui.ThumbnailLink;
-import org.gwtbootstrap3.client.ui.constants.Placement;
-import org.gwtbootstrap3.client.ui.constants.Trigger;
-import org.gwtbootstrap3.client.ui.html.Small;
 
-import br.com.sankhya.place.gwt.commons.client.components.GenericData;
 import br.com.sankhya.place.gwt.commons.utils.client.ColorUtils;
 import br.com.sankhya.place.gwt.commons.utils.client.StringUtils;
-import br.com.sankhya.place.gwt.mvp.client.PlaceController;
 import br.com.tagme.gwt.core.client.pages.ListaOSPage.Person;
 
 import com.google.gwt.core.client.GWT;
@@ -35,15 +24,14 @@ public class SearchItemOsWidget extends Composite {
 
 	@UiField Lead linkTitulo;
 	@UiField HTML strSnipplets;
+	@UiField Anchor niverAnchor;
+	@UiField Anchor telEndAnchor;
 	@UiField ThumbnailLink thumbnailOs;
 	
-	private static int MAX_POPOVER_SIZE = 400;
-	private String numOs;
+
 	
 	public SearchItemOsWidget(Person person) {
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		this.numOs = "10";
 
 		String title = person.toString();
 		
@@ -66,6 +54,10 @@ public class SearchItemOsWidget extends Composite {
 		title.replaceAll("[^A-Z]", "");
 		String color = ColorUtils.textToColor(title);
 		linkTitulo.getElement().getStyle().setColor(color);
+		
+		
+		niverAnchor.setText(person.getBrithDay());
+		telEndAnchor.setText(person.getTelefoneEnd());
 		//TODO:thumbnailOs.setHref(PlaceController.buildHref(new OrdemServicoPlace(numOs+"?item="+numItem+"&pesquisa=S")));
 	}
 	

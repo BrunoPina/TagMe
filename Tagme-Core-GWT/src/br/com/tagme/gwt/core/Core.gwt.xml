@@ -17,6 +17,8 @@
 	<inherits name='com.google.gwt.dom.DOM' />
 	<inherits name="com.google.gwt.http.HTTP" />
 	
+	<inherits name="com.google.gwt.json.JSON" />
+    
 	<inherits name="br.com.sankhya.place.gwt.commons.Commons" />
 	<inherits name="br.com.sankhya.place.gwt.mvp.MVP" />
 	<inherits name="br.com.sankhya.place.gwt.http.HTTP" />

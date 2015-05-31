@@ -14,8 +14,8 @@
 							<g:HTML ui:field="strSnipplets"/>
 						</b:Column>
 						<b:Column size="XS_12" addStyleNames="metas">
-							<b:Anchor text="25 de Janeiro" icon="BIRTHDAY_CAKE" addStyleNames="btn-ler-mais-os"/>
-							<b:Anchor text="... 3214" icon="PHONE" addStyleNames="btn-ler-mais-os"/>
+							<b:Anchor ui:field="niverAnchor" text="" icon="BIRTHDAY_CAKE" addStyleNames="btn-ler-mais-os"/>
+							<b:Anchor ui:field="telEndAnchor" text="" icon="PHONE" addStyleNames="btn-ler-mais-os"/>
 						</b:Column>
 					</b:Row>
 				</b:Column>

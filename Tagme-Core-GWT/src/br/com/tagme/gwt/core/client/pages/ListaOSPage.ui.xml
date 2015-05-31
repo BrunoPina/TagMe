@@ -3,7 +3,8 @@
 			 xmlns:g="urn:import:com.google.gwt.user.client.ui" 
 			 xmlns:b="urn:import:org.gwtbootstrap3.client.ui" 
 			 xmlns:h="urn:import:org.gwtbootstrap3.client.ui.html" 
-			 xmlns:l="urn:import:br.com.tagme.gwt.core.client.widgets">
+			 xmlns:l="urn:import:br.com.tagme.gwt.core.client.widgets"
+			 >
 
 	<b:Row>
 		
@@ -13,6 +14,7 @@
 			
 				<b:Column offset="XS_0,SM_1,MD_2,LG_2" size="XS_12,SM_10,MD_8,LG_8">
 					<b:InputGroup addStyleNames="input-busca">
+<!-- 						<typeahead:Typeahead addStyleNames="input-lg" ui:field="asyncTypeahead"/> -->
 						<b:TextBox addStyleNames="input-lg" placeholder="Buscar por..." ui:field="txbSearchTerm" />
 						<b:InputGroupButton>
 							<b:Button addStyleNames="btn-search" type="DEFAULT" size="LARGE" icon="SEARCH" ui:field="botaoSearch"/>

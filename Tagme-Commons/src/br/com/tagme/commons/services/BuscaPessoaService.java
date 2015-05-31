@@ -1,5 +1,6 @@
 package br.com.tagme.commons.services;
 
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,18 +17,27 @@ import br.com.tagme.commons.spring.ConnectionTemplateFactory;
 @Service("commons@BuscaPessoaService")
 public class BuscaPessoaService extends XMLService {
 
+	public static final int MAXOFFSET = 100;
+
 	@Override
 	public Element doPost(HttpServletRequest request,
 			HttpServletResponse response, Element requestBody,
 			Map<String, LinkedList<String>> params) {
 
+//		long inicio = System.currentTimeMillis();
 		Element parametros = requestBody.getChild("parametros");
 		int page = Integer.parseInt(parametros.getChildText("page")) - 1;
 
-		int offset = 15;
+		int offset = Integer.parseInt(parametros.getChildText("offset"));
+
+		if (offset > MAXOFFSET) {
+			offset = MAXOFFSET;
+		}
 
 		String searchTerm = "%"
-				+ parametros.getChildText("searchTerm").toUpperCase() + "%";
+				+ (parametros.getChildText("searchTerm") == null ? ""
+						: parametros.getChildText("searchTerm")).toUpperCase()
+				+ "%";
 
 		Element entidades = new Element("entidades");
 		entidades.setAttribute("searchTerm", searchTerm);
@@ -55,21 +65,33 @@ public class BuscaPessoaService extends XMLService {
 		metadata.addContent(fieldDtnasc);
 		entidades.addContent(metadata);
 
+		// para paginacao
+
+//		long antesQuery = System.currentTimeMillis();
+
 		String sql = " SELECT CODPES, "
 				+ " NOMECOMPLETO, "
-				+ " DATE_FORMAT(DTNASC, '%d/%m') DTNASC, "
+				+ " DTNASC DTNASC, "
+				+ " CELULAR CELULAR, "
 				+ " (SELECT  COUNT(*) FROM TAGPES WHERE UPPER(NOMECOMPLETO) LIKE ?  )  TOTAL_RESGISTROS "
 				+ " FROM TAGPES " + " WHERE UPPER(NOMECOMPLETO) LIKE ?  "
 				+ " LIMIT  ? OFFSET ? ";
-
 		List<Map<String, Object>> rows = ConnectionTemplateFactory
 				.getTemplate().queryForList(
 						sql,
 						new Object[] { searchTerm, searchTerm, offset,
 								page * offset });
 
+//		long depoisQuery = System.currentTimeMillis();
+
 		int total = 0;
 
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd 'de' MMMMM");
+		
+		        
+
+		
 		for (Map<String, Object> row : rows) {
 			Element entidade = new Element("entidade");
 			Element codpes = new Element("CODPES");
@@ -77,11 +99,17 @@ public class BuscaPessoaService extends XMLService {
 			Element nomeCompleto = new Element("NOMECOMPLETO");
 			nomeCompleto.addContent(row.get("NOMECOMPLETO").toString());
 			Element dtNasc = new Element("DTNASC");
-			dtNasc.addContent(row.get("DTNASC").toString());
+			dtNasc.addContent(format.format(row.get("DTNASC")));
+			Element celularElem = new Element("CELULAR");
+			String celular = row.get("CELULAR").toString();
+			String celularEnd =  celular.length()>4?"... "+celular.substring(celular.length()-4):"n.i";
+			celularElem.addContent(celularEnd);
 			entidade.addContent(codpes);
 			entidade.addContent(nomeCompleto);
 			entidade.addContent(dtNasc);
+			entidade.addContent(celularElem);
 			entidades.addContent(entidade);
+
 			if (total == 0) {
 				Long totalGeral = (Long) row.get("TOTAL_RESGISTROS");
 				entidades.setAttribute("totalResults", totalGeral.toString());
@@ -92,7 +120,11 @@ public class BuscaPessoaService extends XMLService {
 		}
 
 		entidades.setAttribute("total", Integer.toString(total));
-		entidades.setAttribute("total", Integer.toString(total));
+
+//		long fim = System.currentTimeMillis();
+
+//		System.out.println("Query " + Long.toString(depoisQuery - antesQuery));
+//		System.out.println("Tudo " + Long.toString(fim - inicio));
 
 		return entidades;
 
