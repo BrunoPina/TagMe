@@ -81,44 +81,44 @@ public class LoggedInUserWidget extends Composite {
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("getNotAuthzReasons", "true");
 		
-		service.call("PORCLI@BuscaInfosContatoService", null, params, new XMLCallback() {
-
-			@Override
-			public void onResponseReceived(Element response) {
-				Element responseElem = XMLUtils.getFirstChild(response, "contato");
-				String strNomeParc = responseElem != null ? XMLUtils.getNodeValue(XMLUtils.getFirstChild(responseElem,"NOMEPARC")) : "";
-				nomeParc.setText(strNomeParc);
-				
-				NodeList listReasonLostAccess = response.getElementsByTagName("RLA");
-				
-				if(listReasonLostAccess.getLength() > 0){
-					
-					String rlaHtml = "<br/>";
-				
-					for(int i = 0; i  < listReasonLostAccess.getLength() ; i++){
-						Element rla = (Element) listReasonLostAccess.item(i);
-						String lostAccess = rla.getAttribute("lostAccess");
-						String reason = rla.getAttribute("reason");
-						if(SankhyaEnvironment.isJiva() && reason.contains("Sankhya")){
-							reason = reason.replaceAll("Sankhya", "Jiva");
-						}
-						rlaHtml += "<br/><span style='text-align:justify;'><b>" + lostAccess + " </b> " + reason + "</span>";
-						
-					}
-					
-					Alert.showInfo("Acessos bloqueados", rlaHtml);
-				
-				}
-				
-			}
-
-			@Override
-			public boolean onError(ServiceProxyException e) {
-				return false;
-			}
-			
-			
-		});
+//		service.call("PORCLI@BuscaInfosContatoService", null, params, new XMLCallback() {
+//
+//			@Override
+//			public void onResponseReceived(Element response) {
+//				Element responseElem = XMLUtils.getFirstChild(response, "contato");
+//				String strNomeParc = responseElem != null ? XMLUtils.getNodeValue(XMLUtils.getFirstChild(responseElem,"NOMEPARC")) : "";
+//				nomeParc.setText(strNomeParc);
+//				
+//				NodeList listReasonLostAccess = response.getElementsByTagName("RLA");
+//				
+//				if(listReasonLostAccess.getLength() > 0){
+//					
+//					String rlaHtml = "<br/>";
+//				
+//					for(int i = 0; i  < listReasonLostAccess.getLength() ; i++){
+//						Element rla = (Element) listReasonLostAccess.item(i);
+//						String lostAccess = rla.getAttribute("lostAccess");
+//						String reason = rla.getAttribute("reason");
+//						if(SankhyaEnvironment.isJiva() && reason.contains("Sankhya")){
+//							reason = reason.replaceAll("Sankhya", "Jiva");
+//						}
+//						rlaHtml += "<br/><span style='text-align:justify;'><b>" + lostAccess + " </b> " + reason + "</span>";
+//						
+//					}
+//					
+//					Alert.showInfo("Acessos bloqueados", rlaHtml);
+//				
+//				}
+//				
+//			}
+//
+//			@Override
+//			public boolean onError(ServiceProxyException e) {
+//				return false;
+//			}
+//			
+//			
+//		});
 		
 		userImage.setUrl(EnvironmentUtils.getRelativeURL() + "image/user/currUser"+counter+".png?w=70&h=70&r=true&s=true");
 	}

@@ -16,7 +16,8 @@ public class Usuario {
 	private boolean		isAtivo;
 	private String 		chave;
 	private Timestamp	dhativacao;
-	private BigDecimal  codPes; 		
+	private String  codPes; 	
+	private String  codIns; 
 
 	public String getCodUsu() {
 		return codUsu;
@@ -106,12 +107,20 @@ public class Usuario {
 		this.dhativacao = dhativacao;
 	}
 	
-	public BigDecimal getCodPes(){
+	public String getCodPes(){
 		return this.codPes;
 	}
 	
-	public void setCodPes(BigDecimal codPes){
+	public void setCodPes(String codPes){
 		this.codPes = codPes;
+	}
+	
+	public String getCodIns(){
+		return this.codIns;
+	}
+	
+	public void setCodIns(String codIns){
+		this.codIns = codIns;
 	}
 	
 	

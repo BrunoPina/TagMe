@@ -14,10 +14,13 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import br.com.tagme.auth.dao.UsuarioDao;
 
 import br.com.tagme.commons.dao.InstituicaoDao;
 import br.com.tagme.commons.spring.ConnectionTemplateFactory;
@@ -27,20 +30,25 @@ import br.com.tagme.commons.spring.ConnectionTemplateFactory;
 public class IReportDownloader {
 	
 	@Autowired
-	private InstituicaoDao			instituicaoDao;
+	private InstituicaoDao		instituicaoDao;
 	
-	@RequestMapping(value = "/imprimirCheckIn/{codPes}/{codIns}.{extension}")
+	
+	@Autowired
+	private UsuarioDao			usuarioDao;
+
+	
+	@RequestMapping(value = "/imprimirCheckIn/{codPes}.{extension}")
 	public @ResponseBody String imprimirCheckIn(
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			@PathVariable("codPes") String codPes,
-			@PathVariable("codIns") String codIns,
 			@PathVariable("extension") String extension 
 		) throws Exception{
-		
-		
-//		<a href="http://www.yahoo.com" target="_blank">Go to Yahoo</a> 
+
 	    ServletOutputStream output = response.getOutputStream();
+	    
+	    String  name = SecurityContextHolder.getContext().getAuthentication().getName();
+	    String  codIns  = usuarioDao.getUsuarioByUsername(name).getCodIns();
 	    
 		JasperReport report = JasperCompileManager.compileReport(instituicaoDao.getInstituicaoById(codIns).getLayoutCheckIn());
 		
