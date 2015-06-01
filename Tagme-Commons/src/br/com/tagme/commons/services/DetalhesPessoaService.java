@@ -10,6 +10,8 @@ import org.jdom2.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.util.json.JSONObject;
+
 import br.com.tagme.commons.dao.PessoaDao;
 import br.com.tagme.commons.http.XMLService;
 import br.com.tagme.commons.model.Pessoa;
@@ -18,26 +20,22 @@ import br.com.tagme.commons.model.Pessoa;
 public class DetalhesPessoaService extends XMLService {
 
 	@Autowired
-	private PessoaDao			pessoaDao;
+	private PessoaDao pessoaDao;
 
-	
 	@Override
 	public Element doPost(HttpServletRequest request,
 			HttpServletResponse response, Element requestBody,
 			Map<String, LinkedList<String>> params) {
 
-		Element parametros = requestBody.getChild("parametros");
-		
-		String codPes =  parametros.getChildText("codPes") ;
+		String codPes = requestBody.getChildText("codPes");
 
-		Element entidades = new Element("entidades");
+		Element entidades = new Element("pessoa");
 
-		Element metadata = br.com.tagme.commons.model.Pessoa.getMetadataElement();
-		entidades.addContent(metadata);
-		
-		Pessoa pesssoa =  pessoaDao.getPessoaById(codPes);
-		
-		entidades.addContent(pesssoa.getElement());
+		Pessoa pessoa = pessoaDao.getPessoaById(codPes);
+
+		JSONObject pesssoaJS = new JSONObject(pessoa);
+
+		entidades.addContent((pesssoaJS).toString());
 
 		return entidades;
 

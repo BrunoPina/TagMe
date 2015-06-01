@@ -25,6 +25,7 @@ import com.amazonaws.services.simpleemail.model.Content;
 import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
+import com.amazonaws.util.json.JSONObject;
 
 @Service("commons@EnviarEmailService")
 public class EnviarEmailService extends XMLService {
@@ -120,12 +121,12 @@ public class EnviarEmailService extends XMLService {
             System.out.println("Error message: " + ex.getMessage());
         }
 
-		Element metadata = br.com.tagme.commons.model.Pessoa.getMetadataElement();
+		Element metadata = br.com.tagme.commons.model.Pessoa.metadataElement();
 		entidades.addContent(metadata);
 		
 		Pessoa pesssoa =  pessoaDao.getPessoaById(codPes);
 		
-		entidades.addContent(pesssoa.getElement());
+		entidades.addContent(new JSONObject( pesssoa).toString());
 
 		return entidades;
 

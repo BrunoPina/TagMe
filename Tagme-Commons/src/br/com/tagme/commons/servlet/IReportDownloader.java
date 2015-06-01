@@ -38,6 +38,8 @@ public class IReportDownloader {
 			@PathVariable("extension") String extension 
 		) throws Exception{
 		
+		
+//		<a href="http://www.yahoo.com" target="_blank">Go to Yahoo</a> 
 	    ServletOutputStream output = response.getOutputStream();
 	    
 		JasperReport report = JasperCompileManager.compileReport(instituicaoDao.getInstituicaoById(codIns).getLayoutCheckIn());

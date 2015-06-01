@@ -13,7 +13,9 @@ import br.com.sankhya.place.gwt.http.client.XMLServiceProxy;
 import br.com.sankhya.place.gwt.mvp.client.MVPEntryPoint;
 import br.com.sankhya.place.gwt.mvp.client.PlaceController;
 import br.com.tagme.gwt.core.client.activities.CoreActivityFactory;
+import br.com.tagme.gwt.core.client.pages.PersonDetailsPage;
 import br.com.tagme.gwt.core.client.places.NewPersonPlace;
+import br.com.tagme.gwt.core.client.places.PersonDetailsPlace;
 import br.com.tagme.gwt.core.client.places.IndexPlace;
 import br.com.tagme.gwt.core.client.places.LoginPlace;
 import br.com.tagme.gwt.core.client.places.SearchPlace;
@@ -53,6 +55,9 @@ public class CoreEntryPoint extends MVPEntryPoint{
 		
 		addApplicationActivityFactory(new NewPersonPlace.Initializer());
 		addApplicationTokenizer(NewPersonPlace.PREFIX, new NewPersonPlace.Initializer());
+		
+		addApplicationActivityFactory(new PersonDetailsPlace.Initializer());
+		addApplicationTokenizer(PersonDetailsPlace.PREFIX, new PersonDetailsPlace.Initializer());
 		
 		setLoginPlacePrefix("login");
 		AppSecurity.setCustomSecurity(new AppAuth());

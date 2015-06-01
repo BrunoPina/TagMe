@@ -24,7 +24,7 @@ public class BuscaPessoaService extends XMLService {
 			HttpServletResponse response, Element requestBody,
 			Map<String, LinkedList<String>> params) {
 
-//		long inicio = System.currentTimeMillis();
+		// long inicio = System.currentTimeMillis();
 		Element parametros = requestBody.getChild("parametros");
 		int page = Integer.parseInt(parametros.getChildText("page")) - 1;
 
@@ -67,7 +67,7 @@ public class BuscaPessoaService extends XMLService {
 
 		// para paginacao
 
-//		long antesQuery = System.currentTimeMillis();
+		// long antesQuery = System.currentTimeMillis();
 
 		String sql = " SELECT CODPES, "
 				+ " NOMECOMPLETO, "
@@ -82,16 +82,12 @@ public class BuscaPessoaService extends XMLService {
 						new Object[] { searchTerm, searchTerm, offset,
 								page * offset });
 
-//		long depoisQuery = System.currentTimeMillis();
+		// long depoisQuery = System.currentTimeMillis();
 
 		int total = 0;
 
-		
 		SimpleDateFormat format = new SimpleDateFormat("dd 'de' MMMMM");
-		
-		        
 
-		
 		for (Map<String, Object> row : rows) {
 			Element entidade = new Element("entidade");
 			Element codpes = new Element("CODPES");
@@ -102,7 +98,8 @@ public class BuscaPessoaService extends XMLService {
 			dtNasc.addContent(format.format(row.get("DTNASC")));
 			Element celularElem = new Element("CELULAR");
 			String celular = row.get("CELULAR").toString();
-			String celularEnd =  celular.length()>4?"... "+celular.substring(celular.length()-4):"n.i";
+			String celularEnd = celular.length() > 4 ? "... "
+					+ celular.substring(celular.length() - 4) : "n.i";
 			celularElem.addContent(celularEnd);
 			entidade.addContent(codpes);
 			entidade.addContent(nomeCompleto);
@@ -121,10 +118,11 @@ public class BuscaPessoaService extends XMLService {
 
 		entidades.setAttribute("total", Integer.toString(total));
 
-//		long fim = System.currentTimeMillis();
+		// long fim = System.currentTimeMillis();
 
-//		System.out.println("Query " + Long.toString(depoisQuery - antesQuery));
-//		System.out.println("Tudo " + Long.toString(fim - inicio));
+		// System.out.println("Query " + Long.toString(depoisQuery -
+		// antesQuery));
+		// System.out.println("Tudo " + Long.toString(fim - inicio));
 
 		return entidades;
 

@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.jdom2.Element;
 
+import com.amazonaws.util.json.JSONObject;
+
 import br.com.tagme.commons.utils.FieldMetadata;
 
 
-public class Pessoa {
+public class Pessoa  {
 
 	private String	codPes;
 	private String nomeCompleto;
@@ -70,8 +72,8 @@ public class Pessoa {
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
 	}
-	public Timestamp getDtNasc() {
-		return dtNasc;
+	public String getDtNasc() {
+		return dtNasc.toString();
 	}
 	public void setDtNasc(Timestamp dtNasc) {
 		this.dtNasc = dtNasc;
@@ -150,14 +152,14 @@ public class Pessoa {
 	}
 	
 	
-	public static List<FieldMetadata> getPresentationsFields(){
+	public static List<FieldMetadata> presentationsFields(){
 		return FIELDS_METADATA;
 	}
 	
-	public static Element getMetadataElement(){
+	public static Element metadataElement(){
 		Element metadata = new Element("metadata");
 		
-		for( FieldMetadata field : getPresentationsFields() ){
+		for( FieldMetadata field : presentationsFields() ){
 			metadata.addContent(field.getElement());
 		}
 		
@@ -165,26 +167,5 @@ public class Pessoa {
 	} 
 	
 	
-	public Element getElement(){
 
-		Element entidade = new Element("entidade");
-		entidade.addContent(new Element("CODPES").addContent(getCodPes()));
-		entidade.addContent(new Element("NOMECOMPLETO").addContent(getNomeCompleto()));
-		entidade.addContent(new Element("EMAIL").addContent(getEmail()));
-		entidade.addContent(new Element("PROFISSAO").addContent(getProfissao()));
-		entidade.addContent(new Element("DTNASC").addContent(getDtNasc().toString()));
-		entidade.addContent(new Element("CPF").addContent(getCpf()));
-		entidade.addContent(new Element("ENDERECO").addContent(getEndereco()));
-		entidade.addContent(new Element("BAIRRO").addContent(getBairro()));
-		entidade.addContent(new Element("CEP").addContent(getCep()));
-		entidade.addContent(new Element("CIDADE").addContent(getCidade()));
-		entidade.addContent(new Element("ESTADO").addContent(getEstado()));
-		entidade.addContent(new Element("NACIONALIDADE").addContent(getNacionalidade()));
-		entidade.addContent(new Element("TELEFONE").addContent(getTelefone()));
-		entidade.addContent(new Element("CELULAR").addContent(getCelular()));
-		entidade.addContent(new Element("SEXO").addContent(getSexo()));
-		entidade.addContent(new Element("FUMANTE").addContent(getFumante()));
-		return entidade;
-		
-	}
 }

@@ -6,7 +6,9 @@ import org.gwtbootstrap3.client.ui.ThumbnailLink;
 
 import br.com.sankhya.place.gwt.commons.utils.client.ColorUtils;
 import br.com.sankhya.place.gwt.commons.utils.client.StringUtils;
+import br.com.sankhya.place.gwt.mvp.client.PlaceController;
 import br.com.tagme.gwt.core.client.pages.ListaOSPage.Person;
+import br.com.tagme.gwt.core.client.places.PersonDetailsPlace;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -58,7 +60,8 @@ public class SearchItemOsWidget extends Composite {
 		
 		niverAnchor.setText(person.getBrithDay());
 		telEndAnchor.setText(person.getTelefoneEnd());
-		//TODO:thumbnailOs.setHref(PlaceController.buildHref(new OrdemServicoPlace(numOs+"?item="+numItem+"&pesquisa=S")));
+		
+		thumbnailOs.setHref(PlaceController.buildHref(new PersonDetailsPlace(Long.toString(person.getCod()))));
 	}
 	
 	private String getWord(String [] words, boolean isFirst){

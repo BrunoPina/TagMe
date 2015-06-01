@@ -31,6 +31,7 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
@@ -149,6 +150,11 @@ public class ListaOSPage extends CompositeWithPresenter {
 					if (nodes.item(i).getNodeName()
 							.equalsIgnoreCase("entidade")) {
 
+						Element codElement = XMLUtils.getFirstChild(
+								(Element) nodes.item(i), "CODPES");
+
+						String codPes = XMLUtils.getNodeValue(codElement);
+						
 						Element nomeElement = XMLUtils.getFirstChild(
 								(Element) nodes.item(i), "NOMECOMPLETO");
 
@@ -163,7 +169,7 @@ public class ListaOSPage extends CompositeWithPresenter {
 
 						
 						
-						Person person = new Person(nome, ninver,endTelefone);
+						Person person = new Person(Long.parseLong(codPes) ,nome, ninver,endTelefone);
 						SearchItemOsWidget searchItemOsWidget = new SearchItemOsWidget(
 								person);
 						searchResultsContainer.add(searchItemOsWidget);
@@ -204,11 +210,13 @@ public class ListaOSPage extends CompositeWithPresenter {
 	}
 
 	public class Person {
+		final long cod;
 		final String name;
 		final String brithDay;
 		final String telefoneEnd;
 
-		Person(final String name, final String brithDay, final String telefoneEnd) {
+		Person(final long cod ,final String name, final String brithDay, final String telefoneEnd) {
+			this.cod = cod;
 			this.name = name;
 			this.brithDay = brithDay;
 			this.telefoneEnd = telefoneEnd;
@@ -219,6 +227,10 @@ public class ListaOSPage extends CompositeWithPresenter {
 			return name;
 		}
 
+		public long getCod() {
+			return cod;
+		}
+		
 		public String getName() {
 			return name;
 		}
