@@ -68,5 +68,6 @@
 	<classpathentry kind="lib" path="/Tagme-API-Outros/ireport/groovy-all-1.5.3.jar"/>
 	<classpathentry kind="lib" path="/Tagme-API-Outros/ireport/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="/Tagme-API-Outros/aws-java-sdk-1.8.10.1.jar"/>
+	<classpathentry kind="lib" path="/Tagme-Modules/Tagme-auth.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
