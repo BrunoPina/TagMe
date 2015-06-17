@@ -6,12 +6,14 @@ import org.gwtbootstrap3.client.ui.Container;
 import br.com.sankhya.place.gwt.mvp.client.DefaultActivity;
 import br.com.sankhya.place.gwt.mvp.client.MVPEntryPoint;
 import br.com.sankhya.place.gwt.mvp.client.places.AbstractPlace;
+import br.com.tagme.gwt.core.client.CoreEntryPoint;
 import br.com.tagme.gwt.core.client.pages.LoginPage;
 
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.event.logical.shared.AttachEvent.Handler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class LoginActivity extends DefaultActivity{
 
@@ -30,7 +32,12 @@ public class LoginActivity extends DefaultActivity{
 					
 					if(event.isAttached()){
 						if(outerContainer != null){
+							outerContainer.removeStyleName("container");
+							outerContainer.addStyleName("container-fluid");
+							
 							outerContainer.addStyleName("centered-content-page");
+							CoreEntryPoint.hideControls();
+							RootPanel.get().addStyleName("login-page");
 						}
 						try{
 							((Column)MVPEntryPoint.getMainApplicationContainer()).addStyleName("min-height-login-page");
@@ -38,7 +45,12 @@ public class LoginActivity extends DefaultActivity{
 						
 					}else{
 						if(outerContainer != null){
+							outerContainer.addStyleName("container");
+							outerContainer.removeStyleName("container-fluid");
+							
 							outerContainer.removeStyleName("centered-content-page");
+							CoreEntryPoint.showControls();
+							RootPanel.get().removeStyleName("login-page");
 						}
 						try{
 							((Column)MVPEntryPoint.getMainApplicationContainer()).removeStyleName("min-height-login-page");

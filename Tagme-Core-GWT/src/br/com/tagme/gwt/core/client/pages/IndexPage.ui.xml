@@ -9,11 +9,11 @@
 	
 	<b:Row height="100%" addStyleNames="parent-center-vertical">
 	
-		<b:Column size="XS_12" height="100%" addStyleNames="center-vertical">
-			<b:Image addStyleNames="center-block logo-indexpage" resource="{res.create.logosankhya}"></b:Image>
+		<b:Column size="XS_12" height="100%" addStyleNames="center-vertical index-search xs-index-search">
+			<b:Image addStyleNames="center-block logo-indexpage img-responsive" resource="{res.create.logo}"></b:Image>
 			<b:Row>
 				<b:Column offset="XS_0,SM_1,MD_2,LG_3" size="XS_12,SM_10,MD_8,LG_6">
-					<b:InputGroup addStyleNames="full-width">
+					<b:InputGroup addStyleNames="full-width center-block search-input">
 						<typeahead:Typeahead addStyleNames="input-lg" ui:field="asyncTypeahead"/>
 						<b:InputGroupButton>
 							<b:Button addStyleNames="btn-search" type="DEFAULT" size="LARGE" icon="SEARCH" ui:field="botaoSearch"/>

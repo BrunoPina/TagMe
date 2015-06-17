@@ -7,11 +7,11 @@
 	
 	<b:Container addStyleNames="footer-container" height="40">
 		<b:Row height="40">
-			<b:Column size="XS_12 SM_12 MD_2">
-				<b:Image addStyleNames="footer-logomarca" resource="{res.create.logomarcasankhya}"></b:Image>
+			<b:Column size="XS_12 SM_12 MD_4">
+				<h:Small addStyleNames="footer-text footer-left-text" text="Copyright © 2015 Tagme. All rights reserved." />
 			</b:Column>
 
-			<b:Column size="XS_12 SM_12 MD_10 LG_9" offset="LG_1">
+			<b:Column size="XS_12 SM_12 MD_8">
 				<b:Row>
 					<b:Column size="XS_12 SM_12 MD_2" offset="MD_6">
 						<b:Button type="LINK" size="SMALL" text="Enviar Feedback" addStyleNames="footer-text" ui:field="botaoFeedback"/>

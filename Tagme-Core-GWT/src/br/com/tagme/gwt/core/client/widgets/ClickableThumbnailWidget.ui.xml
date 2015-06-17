@@ -7,12 +7,15 @@
 		<b:Tooltip ui:field="tooltip">
 			<b:ThumbnailPanel addStyleNames="center-block iconed-thumbnail">
 				<h:Span addStyleNames="thumbnail-icon center-block">
-					<b:Icon type="USD" ui:field="icon" size="TIMES2"/>
+					<b:Image addStyleNames="img-responsive" ui:field="imgItem" />
 				</h:Span>
 				
 				<b:Caption>
 					<b:Heading ui:field="heading" size="H4"/>
 					<h:Paragraph ui:field="paragraph"/>
+					<h:Span>
+						<b:Button text="Mais Detalhes" />
+					</h:Span>
 				</b:Caption>
 			</b:ThumbnailPanel>
 		</b:Tooltip>

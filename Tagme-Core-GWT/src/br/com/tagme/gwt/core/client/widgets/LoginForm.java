@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Image;
 import org.gwtbootstrap3.client.ui.Input;
 import org.gwtbootstrap3.client.ui.Modal;
 import org.gwtbootstrap3.client.ui.ModalBody;
-import org.gwtbootstrap3.client.ui.Pagination;
 import org.gwtbootstrap3.client.ui.SubmitButton;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.gwt.CellTable;
@@ -20,6 +20,7 @@ import br.com.sankhya.place.gwt.commons.client.components.GenericData;
 import br.com.sankhya.place.gwt.commons.utils.client.EnvironmentUtils;
 import br.com.sankhya.place.gwt.commons.utils.client.StringUtils;
 import br.com.sankhya.place.gwt.mvp.client.PlaceController;
+import br.com.tagme.gwt.theme.tagme.client.CommonImagesFactory;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -27,7 +28,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy.KeyboardSelectionPolicy;
-import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -37,7 +37,6 @@ import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitHandler;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.RangeChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 
@@ -45,6 +44,7 @@ public class LoginForm extends Composite{
 
 	private static LoginPageUiBinder	uiBinder	= GWT.create(LoginPageUiBinder.class);
 	private static AppAuthEventHandler authHandler;
+	private static CommonImagesFactory res 	   = GWT.create(CommonImagesFactory.class);
 	
 	interface LoginPageUiBinder extends UiBinder<Widget, LoginForm> {
 	}
@@ -53,6 +53,7 @@ public class LoginForm extends Composite{
 	@UiField FormPanel loginForm;
 	@UiField TextBox username;
 	@UiField Input password;
+	@UiField Image imgLogo;
 	
 	@UiField Modal modalParceiros;
 	@UiField ModalBody containerGridParceiros;
@@ -62,6 +63,8 @@ public class LoginForm extends Composite{
 	
 	public LoginForm() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		imgLogo.setResource(res.create().logosankhya());
 		
 		if(authHandler == null){
 			authHandler = new AppAuthEventHandler() {

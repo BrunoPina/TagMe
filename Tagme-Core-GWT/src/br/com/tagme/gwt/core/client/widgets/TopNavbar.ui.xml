@@ -10,15 +10,16 @@
 			<b:NavbarHeader>
 				<b:NavbarText ui:field="logoText" addStyleNames="xs-sm-logo-container logo-container parent-center-vertical">
 					<b:Anchor ui:field="logoAnchor" addStyleNames="anchor-logo-pos-fix" dataToggle="COLLAPSE" dataTarget="#collapseMenu"/>
-					<b:Image addStyleNames="logo img-responsive" resource="{res.create.logomarcasankhya}" />
+					<b:Image addStyleNames="logo img-responsive" resource="{res.create.logosmall}" />
 				</b:NavbarText>
 				<b:NavbarCollapseButton dataTarget="#navbar-collapse"/>
 			</b:NavbarHeader>
 			
 			<b:NavbarCollapse b:id="navbar-collapse" ui:field="navbarContainer">
 				<b:NavbarNav>
-					<b:AnchorListItem active="true" icon="BUILDING_O">Hotel</b:AnchorListItem>
-	      			<b:AnchorListItem icon="USER_PLUS">Cadastre-se!</b:AnchorListItem>
+					<b:AnchorListItem>Pré Check-ins</b:AnchorListItem>
+					<b:AnchorListItem>Buscar Pessoa</b:AnchorListItem>
+					<b:AnchorListItem>Novo Cadastro</b:AnchorListItem>
      			</b:NavbarNav>
 			</b:NavbarCollapse>
 		</b:Container>

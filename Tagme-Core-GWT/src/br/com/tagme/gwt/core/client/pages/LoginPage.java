@@ -1,15 +1,18 @@
 package br.com.tagme.gwt.core.client.pages;
 
-import org.gwtbootstrap3.client.ui.html.Paragraph;
-import org.gwtbootstrap3.client.ui.html.Small;
+import org.gwtbootstrap3.client.ui.Column;
+import org.gwtbootstrap3.client.ui.Row;
 
 import br.com.sankhya.place.gwt.commons.client.components.Alert;
 import br.com.sankhya.place.gwt.commons.client.components.Alert.ConfirmTextCallback;
 import br.com.sankhya.place.gwt.commons.client.components.formitem.FormItem;
-import br.com.sankhya.place.gwt.commons.client.sankhya.SankhyaEnvironment;
 import br.com.sankhya.place.gwt.commons.utils.client.EnvironmentUtils;
+import br.com.tagme.gwt.core.client.places.IndexPlace;
+import br.com.tagme.gwt.core.client.widgets.ClickableThumbnailWidget;
 import br.com.tagme.gwt.core.client.widgets.CriarContaModal;
 import br.com.tagme.gwt.core.client.widgets.LoginForm;
+import br.com.tagme.gwt.core.client.widgets.ThumbnailWidget;
+import br.com.tagme.gwt.theme.tagme.client.CommonImagesFactory;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -35,19 +38,15 @@ public class LoginPage extends Composite {
 	
 	@UiField FormPanel reenviarEmailForm;
 	
-	@UiField Paragraph txtMkt;
-	@UiField Small detalheMkt;
+	@UiField Row thumbnailsContainer;
+	
+	private static CommonImagesFactory res 	   = GWT.create(CommonImagesFactory.class);
 	
 	private FormItem<String> formEmail;
 	
 	public LoginPage() {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		if(SankhyaEnvironment.isJiva()){
-			txtMkt.setText("De forma integrada e eficiente, as soluções Jiva proporcionam um melhor fluxo das informações entre os processos da empresa, a fim de garantir uma gestão mais segura para os nossos clientes.");
-			detalheMkt.setText("Jiva, atuando sempre perto para nossos clientes chegarem longe");
-		}
-		
 		reenviarEmailForm.setEncoding(FormPanel.ENCODING_URLENCODED);
 		reenviarEmailForm.setAction(EnvironmentUtils.getRelativeURL() + "reenviarEmailValidacao");
 		reenviarEmailForm.addSubmitCompleteHandler(new SubmitCompleteHandler() {
@@ -77,15 +76,28 @@ public class LoginPage extends Composite {
 		formEmail.setVisible(false);
 		formEmail.setName("emailReenv");
 		reenviarEmailForm.add(formEmail);
+		thumbnailsContainer.add(buildThumbnailColumn(new ClickableThumbnailWidget(res.create().imbc(), "Para Você",      "Sua viagem com mais comodidade", new IndexPlace("a"))));
+		thumbnailsContainer.add(buildThumbnailColumn(new ClickableThumbnailWidget(res.create().imgb(), "Registro Único", "Fácil, sempre atualizado e seguro", new IndexPlace("a"))));
+		thumbnailsContainer.add(buildThumbnailColumn(new ClickableThumbnailWidget(res.create().imga(), "Para Hotéis",    "Check-in online e descentralizado", new IndexPlace("a"))));
+	}
+		
+	private Column buildThumbnailColumn(ThumbnailWidget thumbnail){
+		Column column = new Column("XS_12 SM_6 MD_4 LG_4");
+		column.add(thumbnail);
+		return column;
 	}
 	
-	@UiHandler("btnCriarConta")
+	@UiHandler("btnMeCadastrar")
+	void onBtnMeCadastrarClick(ClickEvent event){
+	}
+	
+	//@UiHandler("btnCriarConta")
 	void onBtnCriarContaClick(ClickEvent event){
 		CriarContaModal modal = new CriarContaModal();
 		modal.show();
 	}
 	
-	@UiHandler("btnReenviarEmail")
+	//@UiHandler("btnReenviarEmail")
 	void onbtnReenviarEmailClick(ClickEvent event){
 		Alert.prompt("Reenviar e-mail de confirmação", "Especifique o e-mail utilizado para criar sua conta que reenviaremos um novo link de confirmação.", "E-mail:", new ConfirmTextCallback() {
 			

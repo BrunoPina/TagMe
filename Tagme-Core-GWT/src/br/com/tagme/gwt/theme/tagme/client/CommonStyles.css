@@ -1,12 +1,14 @@
 /*Cores*/
 /*
+logo: #333 #f9d230
+
 info: #3567d8
 
 success: #56bd56
 
 warning: #f7cf00 / mudança: #E9CC35
 
-primary: #ffd700 - jiva:#f46f15
+primary: #f7cd15
 
 danger: #d9534f
 
@@ -19,7 +21,15 @@ gray: #555555
 gray light: #777
 lighter: #EEE
 
-@grid-float-breakpoint = @screen-md-min; 
+@grid-float-breakpoint = @screen-md-min;
+
+@navbar-default-color | @navbar-default-link-color | @text-color = @gray-dark
+
+@navbar-default-link-hover-color = @gray-darker
+
+@navbar-default-link-hover-bg = darken(@navbar-default-bg, 6.5%)
+
+@link-color = #d3af13
 
 jiva:
 
@@ -44,23 +54,26 @@ body{
 	padding-top: 70px;
 }
 
+
 .small-page-header{
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
 
-.index-page-header{
+.page-header{
 	border:0px;
-	padding-bottom:0px;
-	margin-top: 0px;
-	margin-bottom: 10px;
-	text-align: center;
+	  text-align: center;
+  margin-top: 18px;
+  margin-bottom:0px;
 }
 
-.index-page-header h1, .small-page-header h1{
-	margin-top: 0px;
-	margin-bottom: 0px;
-	line-height: 26px;
+.page-header h1{
+	margin-top: 15px;
+	  margin-bottom: 15px;
+	  line-height: 26px;
+	  font-size: 26px;
+	  color: #f5cd24;
+	  font-weight: normal;
 }
 
 .action-button{
@@ -92,7 +105,7 @@ body{
 .form-label{
 	width: 100%;
 	position: relative;
-	right: -15px;
+	right: -5px;
 }
 
 /*Bootstrap*/
@@ -268,19 +281,14 @@ body{
 	padding-left: 1px;
 }
 
-.logo-container{
-	position: relative;
-	margin-top: 7px;
-  	margin-bottom: 8px;
-}
 
-.tagme-navbar{
-	border:0px;
-	background-color: white;
-}
 
 /*UIContentWrapper*/
 .container.outer-container.centered-content-page{
+	height: 100%;
+}
+
+.container-fluid.outer-container.centered-content-page{
 	height: 100%;
 }
 
@@ -290,8 +298,20 @@ body{
 	padding-bottom: 41px;
 }
 
+.login-page .outer-container{
+	padding-bottom: 541px;
+}
+
 .content-wrapper{
 	padding-bottom: 20px;
+}
+
+.login-page .content-wrapper{
+	padding-bottom: 0px;
+}
+
+.min-height-login-page{
+	min-height: 400px;
 }
 
 /*Footer*/
@@ -304,7 +324,7 @@ body{
 
 .footer-logomarca{/*MediaStyles*/
 	margin-top:5px;
-	margin-bottom:5px;
+	margin-bottom:1px;
 }
 
 .footer-text{/*MediaStyles*/
@@ -316,16 +336,16 @@ body{
 	border: 0px;
 }
 
+.footer-left-text{/*MediaStyles*/
+	text-align: left;
+}
+
 /*LoginForm*/
 .loginform-title{
 	font-size: 14px;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 8px;
-}
-
-.min-height-login-page{
-	min-height: 420px;
 }
 
 /*LoginPage*/
@@ -522,125 +542,6 @@ body{
 
 .flip .card .back{
 	background-color: white;
-}
-
-/*Iconed Thumbnail*/
-.thumbnail-icon{
-	padding: 19px;
-	width: 70px;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #ffd700;
-	color: #ffd700;
-	text-align: center;
-	border-radius: 50px;
-}
-
-.thumbnail-icon .fa-share{
-	position: relative;
-  	top: 2px;
-  	left: 1px;
-}
-
-.thumbnail-icon .fa-book{
-	position: relative;
-  	top: 2px;
-}
-
-.thumbnail-icon .fa-file-code-o{
-  	position: relative;
-	top: 1px;
-	font-size: 1.9em;
-}
-
-.thumbnail-icon .fa-folder-open{
-	position: relative;
-	top: 3px;
-	left: 1px;
-}
-.thumbnail-icon .fa-newspaper-o{
-	position: relative;
-	top: 3px;
-	left: -2px;
-}
-
-.iconed-thumbnail{
-	width: 260px;
-	height: 270px;
-	padding-top: 15px;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.iconed-thumbnail .caption {
-	text-align: center;
-}
-
-.iconed-thumbnail .caption p {
-	line-height: 30px;
-	font-size: 16px;
-	font-weight: 200;
-	color: #929292;
-}
-
-.iconed-thumbnail .caption h4 {
-	font-weight: normal;
-	color: #929292;
-}
-
-.thumbnail-link:hover{
-	text-decoration: none;
-}
-
-.thumbnail-link:hover p{
-	color:#ffd700;
-}
-
-.thumbnail-link:hover h4{
-	color:#ffd700;
-}
-
-.thumbnail-link:hover i{
-	background-color: #ffd700;
-	color:white;
-}
-
-.thumbnail-link:hover span{
-	background-color: #ffd700;
-	color:white;
-}
-
-.thumbnail-link.disabled:hover{
-	cursor: no-drop;
-}
-
-.thumbnail-link.disabled:hover p{
-	color:#929292;
-}
-
-.thumbnail-link.disabled:hover h4{
-	color:#929292;
-}
-
-.thumbnail-link.disabled:hover i{
-	background-color: white;
-	color:#929292;
-}
-
-.thumbnail-link.disabled:hover span{
-	background-color: white;
-	color:#929292;
-}
-
-.thumbnail-link.disabled i{
-	background-color: white;
-	color:#929292;
-}
-
-.thumbnail-link.disabled span{
-	background-color: white;
-	color:#929292;
-	border: 2px solid #929292;
 }
 
 /*Tooltip*/
@@ -2025,9 +1926,9 @@ li.token-input-input-token-facebook {
 }
 
 .logo-indexpage{
-	position: relative;
-	top: -25px;
-	left: -25px;
+	padding-bottom:20px;
+	position:relative;
+	left:-17px;
 }
 
 .input-group .twitter-typeahead{
@@ -2061,7 +1962,265 @@ li.token-input-input-token-facebook {
 	margin:0px;
 	width : 75px;
 	height : 75px;
-	line-height : 33px;
+	line-height : 44px;
 	text-align: center;
 	margin:auto;
+}
+
+.person-badge .mes{
+	position: absolute;
+	left:38px;
+	top:10px;
+}
+
+.modal-backdrop{
+	z-index: 0;	
+}
+
+.tt-suggestion.tt-cursor{
+	background-image: none !important;
+}
+
+.selected-step{
+	color:#f5cd24 !important;
+}
+
+.steps-btn-container{
+	margin-top: 15px;
+  	margin-bottom: 15px;
+}
+
+.steps-btn-container.right{
+	text-align: right;
+}
+
+.steps-btn-container.left{
+	text-align: left;
+}
+
+.steps-btn-container .btn-link[disabled]{
+	color: #a7a7a7;
+}
+
+.steps-btn-container .btn-link{
+	font-size:16px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.steps-icons-container{
+	text-align: center;
+  	padding-bottom: 15px;
+  	border-bottom:1px solid whitesmoke;
+}
+
+.steps-icons-container .fa{
+	margin-left: 15px;
+	margin-right: 15px;
+	color:#919191;
+}
+
+.form-item{
+	padding-top:40px;
+}
+
+/*NOVO*/
+
+html, body {
+	height: 100%;
+}
+
+.login-page{ 
+	padding-top: 0px;
+	background-color: #fafafa;
+}
+
+/*TopNavBar*/
+
+.logo-container{
+	position: relative;
+  	margin-top: 8px;
+  	margin-bottom: 8px;
+}
+
+.tagme-navbar{
+	border:0px;
+	background-color: rgba(255,255,255,.97);
+}
+
+/*Login Page*/
+.logo-loginform{
+	margin-bottom: 15px;
+	position:relative;
+	left: -17px;
+}
+
+.input-lg-icon{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.input-lg-icon .fa {
+  width: 14px;
+}
+
+.login-panel{
+	background-color: transparent;
+	min-width: 270px;
+	max-width: 350px;
+}
+
+.login-panel .btn{
+	background-color: #F8D234;
+	border-color: #F8D234;
+	letter-spacing: 1px;
+}
+
+.login-panel .btn:hover{
+	 background-color: #dcb50a;
+	 border-color: #dcb50a;
+}
+
+.login-lead{
+	text-align: center;
+	font-size: 26px;
+}
+
+.btn-destaque{
+	letter-spacing: 1px;
+}
+
+.btn-destaque.btn-primary{
+	background-color: #F8D234;
+	border-color: #dcb50a;
+}
+
+.btn-destaque.btn-primary:hover{
+	 background-color: #dcb50a;
+}
+
+/*Iconed Thumbnail*/
+
+.thumbnail{
+	margin-bottom: 25px;
+}
+
+.thumbnail-icon{
+}
+
+.iconed-thumbnail{
+	max-width: 340px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	min-width: 265px;
+	height: 314px;
+}
+
+.iconed-thumbnail .btn-container{
+	position: absolute;
+	width: 100%;
+	left: 0%;
+	background-color: transparent !important;
+}
+
+
+.iconed-thumbnail .caption {
+	text-align: center;
+}
+
+.iconed-thumbnail .caption p {
+	line-height: 30px;
+	font-size: 16px;
+	font-weight: 200;
+	color: #929292;
+	margin-bottom: 5px;
+}
+
+.iconed-thumbnail .caption h4 {
+	font-weight: normal;
+	color: #333;
+	margin-bottom: 5px;
+}
+
+.thumbnail-link:hover{
+	text-decoration: none;
+}
+
+.thumbnail-link:hover p{
+	color:#929292;
+}
+
+.thumbnail-link:hover h4{
+	color:inherit;
+}
+
+.thumbnail-link:hover i{
+	background-color: #ffd700;
+	color:white;
+}
+
+.thumbnail-link:hover span{
+	background-color:inherit;
+	color:inherit;
+}
+
+.thumbnail-link:hover button{
+	background-color: #e6e6e6;
+}
+
+.thumbnail-link.disabled:hover{
+	cursor: no-drop;
+}
+
+.thumbnail-link.disabled:hover p{
+	color:#929292;
+}
+
+.thumbnail-link.disabled:hover h4{
+	color:#929292;
+}
+
+.thumbnail-link.disabled:hover i{
+	background-color: white;
+	color:#929292;
+}
+
+.thumbnail-link.disabled:hover span{
+	background-color: white;
+	color:#929292;
+}
+
+.thumbnail-link.disabled i{
+	background-color: white;
+	color:#929292;
+}
+
+.thumbnail-link.disabled span{
+	background-color: white;
+	color:#929292;
+	overflow: hidden;
+  	border-top-left-radius: 3px;
+  	border-top-right-radius: 3px;
+}
+
+.thumbnail-link .btn-default{
+	color: #717171;
+	border-color: #DDD;
+}
+
+.thumbnails-container{
+	background-color: white;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+/*Index Page*/
+.search-input{
+	max-width: 510px;
+}
+
+.index-search{
+	position: relative;
+	top: -50px;
 }

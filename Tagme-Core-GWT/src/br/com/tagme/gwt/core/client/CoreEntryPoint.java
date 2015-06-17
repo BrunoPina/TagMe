@@ -1,7 +1,5 @@
 package br.com.tagme.gwt.core.client;
 
-import org.gwtbootstrap3.client.ui.gwt.Widget;
-
 import br.com.sankhya.place.gwt.auth.client.AppAuth;
 import br.com.sankhya.place.gwt.auth.client.AppAuthEvent;
 import br.com.sankhya.place.gwt.auth.client.AppAuthEventHandler;
@@ -13,18 +11,16 @@ import br.com.sankhya.place.gwt.http.client.XMLServiceProxy;
 import br.com.sankhya.place.gwt.mvp.client.MVPEntryPoint;
 import br.com.sankhya.place.gwt.mvp.client.PlaceController;
 import br.com.tagme.gwt.core.client.activities.CoreActivityFactory;
-import br.com.tagme.gwt.core.client.pages.PersonDetailsPage;
-import br.com.tagme.gwt.core.client.places.NewPersonPlace;
-import br.com.tagme.gwt.core.client.places.PersonDetailsPlace;
 import br.com.tagme.gwt.core.client.places.IndexPlace;
 import br.com.tagme.gwt.core.client.places.LoginPlace;
+import br.com.tagme.gwt.core.client.places.NewPersonPlace;
+import br.com.tagme.gwt.core.client.places.PersonDetailsPlace;
 import br.com.tagme.gwt.core.client.places.SearchPlace;
-import br.com.tagme.gwt.core.client.widgets.BottomNavbar;
 import br.com.tagme.gwt.core.client.widgets.DefaultInnerPage;
+import br.com.tagme.gwt.core.client.widgets.FluidUIContentWrapper;
 import br.com.tagme.gwt.core.client.widgets.Footer;
 import br.com.tagme.gwt.core.client.widgets.Menu;
 import br.com.tagme.gwt.core.client.widgets.TopNavbar;
-import br.com.tagme.gwt.core.client.widgets.UIContentWrapper;
 import br.com.tagme.gwt.theme.tagme.client.CommonStyles;
 
 import com.google.gwt.user.client.ui.RootPanel;
@@ -34,7 +30,8 @@ public class CoreEntryPoint extends MVPEntryPoint{
 
 	private static boolean firstHistoryHandleDispatched = false;
 	private static TopNavbar topNavbar;
-	private static BottomNavbar bottomNavbar;
+	//private static BottomNavbar bottomNavbar;
+	private static Footer footer;
 	
 	@Override
 	public void onModuleLoad() {
@@ -59,6 +56,9 @@ public class CoreEntryPoint extends MVPEntryPoint{
 		addApplicationActivityFactory(new PersonDetailsPlace.Initializer());
 		addApplicationTokenizer(PersonDetailsPlace.PREFIX, new PersonDetailsPlace.Initializer());
 		
+		//addApplicationActivityFactory(new WizardPlace.Initializer());
+		//addApplicationTokenizer(WizardPlace.PREFIX, new WizardPlace.Initializer());
+		
 		setLoginPlacePrefix("login");
 		AppSecurity.setCustomSecurity(new AppAuth());
 		setSecurity(AppAuth.getInstance());
@@ -66,7 +66,9 @@ public class CoreEntryPoint extends MVPEntryPoint{
 		initMVP();
 		
 		topNavbar = new TopNavbar();
-		final UIContentWrapper contentWrapper = new UIContentWrapper();
+		final FluidUIContentWrapper contentWrapper = new FluidUIContentWrapper();
+		footer = new Footer();
+		//final UIContentWrapper contentWrapper = new UIContentWrapper();
 		
 		setMainApplicationContainer(contentWrapper.getMainContainer());
 		setApplicationOuterContainer(contentWrapper.getOuterContainer());
@@ -83,7 +85,8 @@ public class CoreEntryPoint extends MVPEntryPoint{
 						firstHistoryHandleDispatched = true;
 						RootPanel.get().add(topNavbar);
 						RootPanel.get().add(contentWrapper);
-						RootPanel.get().add(new Footer());
+						RootPanel.get().add(footer);
+						//RootPanel.get().add(contentWrapper);
 						MVPEntryPoint.handleCurrentHistory();
 					}
 				}
@@ -115,11 +118,29 @@ public class CoreEntryPoint extends MVPEntryPoint{
 		
 	}
 	
+	public static void showControls(){
+		if(topNavbar.getParent() == null){
+			RootPanel.get().insert(topNavbar, 0);
+		}
+		if(footer.getParent() == null){
+			RootPanel.get().add(footer);
+		}
+	}
+	
+	public static void hideControls(){
+		if(topNavbar.getParent() != null){
+			RootPanel.get().remove(topNavbar);
+		}
+		if(footer.getParent() != null){
+			RootPanel.get().remove(footer);
+		}
+	}
+	
 	public static TopNavbar getTopNavbar(){
 		return topNavbar;
 	}
 	
-	public static void addBottomNavbar(Widget innerWidget){
+	/*public static void addBottomNavbar(Widget innerWidget){
 		bottomNavbar = new BottomNavbar(innerWidget);
 		RootPanel.get().add(bottomNavbar);
 	}
@@ -128,5 +149,5 @@ public class CoreEntryPoint extends MVPEntryPoint{
 		if(bottomNavbar != null){
 			RootPanel.get().remove(bottomNavbar);
 		}
-	}
+	}*/
 }

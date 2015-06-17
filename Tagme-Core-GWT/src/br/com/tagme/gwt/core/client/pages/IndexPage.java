@@ -65,6 +65,8 @@ public class IndexPage extends CompositeWithPresenter {
 						+ asyncTypeahead.getText()));
 			}
 		});
+		
+		asyncTypeahead.setPlaceholder("Busque por um nome");
 	}
 
 	private void createAsyncTypeahead() {

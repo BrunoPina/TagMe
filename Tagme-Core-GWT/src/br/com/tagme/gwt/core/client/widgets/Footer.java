@@ -1,18 +1,20 @@
 package br.com.tagme.gwt.core.client.widgets;
 
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Image;
 import org.gwtbootstrap3.client.ui.Modal;
 import org.gwtbootstrap3.client.ui.TextArea;
 import org.gwtbootstrap3.client.ui.html.Small;
 
 import br.com.sankhya.place.gwt.commons.client.components.Alert;
-import br.com.sankhya.place.gwt.commons.client.sankhya.SankhyaEnvironment;
 import br.com.sankhya.place.gwt.commons.utils.client.StringUtils;
 import br.com.sankhya.place.gwt.http.client.ServiceProxyException;
 import br.com.sankhya.place.gwt.http.client.XMLCallback;
 import br.com.sankhya.place.gwt.http.client.XMLServiceProxy;
+import br.com.sankhya.place.gwt.theme.sankhya.client.CommonImagesFactory;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -35,7 +37,6 @@ public class Footer extends Composite{
 	@UiField TextArea txaFeedback;
 	@UiField Button botaoEnviar;
 	@UiField Button botaoFechar;
-	
 	
 	interface FooterUiBinder extends UiBinder<Widget, Footer> {
 	}

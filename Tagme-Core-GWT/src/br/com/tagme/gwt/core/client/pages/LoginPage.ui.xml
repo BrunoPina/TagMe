@@ -7,29 +7,80 @@
 	
 	<ui:with field="res" type="br.com.tagme.gwt.theme.tagme.client.CommonImagesFactory"/>
 	
-	<b:Row height="100%" addStyleNames="parent-center-vertical">
-	
-		<b:Column hiddenOn="XS" offset="SM_0 MD_1" size="XS_0 SM_6 MD_6" height="100%" addStyleNames="center-vertical">
-			<b:Row>
-				<b:Column size="XS_12">
-				  	<b:Image addStyleNames="center-block depoimento-image" resource="{res.create.rosalina}" type="CIRCLE"/>
+	<b:Row height="100%">
+		<b:Column size="XS_12" height="100%">
+			
+			<b:Row height="100%" addStyleNames="parent-center-vertical">
+			
+				<b:Column size="XS_12 SM_6" height="100%" addStyleNames="center-vertical">
+					<b:Row>
+						<b:Column offset="XS_2" size="XS_8">
+							<s:LoginForm ui:field="loginForm" />
+							<g:FormPanel ui:field="reenviarEmailForm" action="" method="POST"/>
+						</b:Column>
+					</b:Row>
+					<!-- b:Button addStyleNames="right-block xs-center-block btn-criar-conta" ui:field="btnCriarConta" text="Criar minha conta" type="LINK" />
+					<b:Button addStyleNames="right-block xs-center-block btn-criar-conta" ui:field="btnReenviarEmail" text="Reenviar e-mail de confirmação" type="LINK" / -->
+				</b:Column>	
+				
+				<b:Column size="XS_12 SM_6" height="100%" addStyleNames="center-vertical">
+					<b:Row>
+						<b:Column offset="XS_1" size="XS_10">
+							<b:Lead addStyleNames="login-lead center-block" text="Ainda não possui sua conta? Não perca tempo e faça o último cadastro de sua vida!"/>
+							
+							<b:Row>
+								<b:Column addStyleNames="right-text" size="XS_6">
+									<b:Button type="PRIMARY" size="LARGE" text="Me cadastrar" ui:field="btnMeCadastrar" addStyleNames="btn-destaque"/>
+								</b:Column>
+								<b:Column  addStyleNames="left-text" size="XS_6">
+									<b:Button type="DEFAULT" size="LARGE" text="Saber mais" addStyleNames="btn-destaque"/>
+								</b:Column>
+							</b:Row>
+										
+						</b:Column>
+					</b:Row>
 				</b:Column>
-				<b:Column size="XS_12">
-					<b:BlockQuote addStyleNames="center-block loginpage-blockquote">
-						<h:Paragraph ui:field="txtMkt" text="&quot;Novas ideias e estratégias não têm hora para virem à cabeça. Por isso, é bom contar com a Sankhya e ter meus negócios na palma da minha mão a qualquer hora ou lugar.&quot;" />
-						<h:Small ui:field="detalheMkt" text="Rosalina Vilela, Presidente da Erlan" />
-					</b:BlockQuote>
-				</b:Column>		
+				
 			</b:Row>
+			
+			<b:Row addStyleNames="thumbnails-container" ui:field="thumbnailsContainer">
+			
+			</b:Row>
+			
+			<b:Row height="40">
+				<b:Column size="XS_12 SM_12 MD_2">
+					<b:Image addStyleNames="footer-logomarca" resource="{res.create.logosmall}"></b:Image>
+				</b:Column>
+	
+				<b:Column size="XS_12 SM_12 MD_10 LG_9" offset="LG_1">
+					<b:Row>
+						<b:Column size="XS_12 SM_12 MD_2" offset="MD_6">
+							<b:Button type="LINK" size="SMALL" text="Enviar Feedback" addStyleNames="footer-text" ui:field="botaoFeedback"/>
+						</b:Column>
+						<b:Column size="XS_12 SM_12 MD_2">
+							<h:Small ui:field="email" addStyleNames="footer-text" text="contato@tagme.info" />
+						</b:Column>
+						<b:Column size="XS_12 SM_12 MD_2">
+							<h:Small ui:field="site" addStyleNames="footer-text" text="www.tagme.info" />					
+						</b:Column>
+					</b:Row>
+				</b:Column>
+				
+				<b:Modal ui:field="modal" title="Enviar Feedback">
+					<b:ModalBody>
+						<b:TextArea ui:field="txaFeedback" height="300"/>
+					</b:ModalBody>
+					<b:ModalFooter>
+						<b:Button type="SUCCESS" text="Enviar" dataLoadingText="Enviando..." ui:field="botaoEnviar"/>
+						<b:Button type="DANGER" text="Fechar" ui:field="botaoFechar"/>
+					</b:ModalFooter>
+				</b:Modal>
+				
+			</b:Row>
+						
 		</b:Column>
-		
-		<b:Column size="XS_12 SM_6 MD_4" height="100%" addStyleNames="center-vertical">
-			<s:LoginForm ui:field="loginForm" />
-			<b:Button addStyleNames="right-block xs-center-block btn-criar-conta" ui:field="btnCriarConta" text="Criar minha conta" type="LINK" />
-			<b:Button addStyleNames="right-block xs-center-block btn-criar-conta" ui:field="btnReenviarEmail" text="Reenviar e-mail de confirmação" type="LINK" />
-			<g:FormPanel ui:field="reenviarEmailForm" action="" method="POST"/>
-		</b:Column>
-		
 	</b:Row>
+	
+	
 	
 </ui:UiBinder> 

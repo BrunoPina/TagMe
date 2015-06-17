@@ -20,7 +20,6 @@ public class PessoaPage extends CompositeWithPresenter {
 		
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		CoreEntryPoint.addBottomNavbar(null);
 	}
 	
 	/*private void addNotEmptyValidator(final TextBoxBase field){

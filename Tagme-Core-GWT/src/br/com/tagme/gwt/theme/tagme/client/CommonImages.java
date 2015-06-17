@@ -9,6 +9,11 @@ public interface CommonImages extends ClientBundle{
 	ImageResource logo();
 	ImageResource logosankhya();
 	ImageResource logomarcasankhya();
+	ImageResource logosmall();
+	
+	ImageResource imga();
+	ImageResource imgb();
+	ImageResource imbc();
 	
 	ImageResource oscar();
 	ImageResource rosalina();
@@ -28,9 +33,14 @@ public interface CommonImages extends ClientBundle{
 	
 	public interface Retina extends CommonImages {
 		
+		RetinaImageResource imga();
+		RetinaImageResource imgb();
+		RetinaImageResource imbc();
+		
 		RetinaImageResource logo();
 		RetinaImageResource logosankhya();
 		RetinaImageResource logomarcasankhya();
+		RetinaImageResource logosmall();
 		
 		RetinaImageResource oscar();
 		RetinaImageResource rosalina();
